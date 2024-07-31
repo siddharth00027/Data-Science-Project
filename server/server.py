@@ -1,5 +1,6 @@
 from flask import Flask, request, jsonify
 import  util
+import os
 app = Flask(__name__)
 def initialize():
     util.load_saved_artifacts()
