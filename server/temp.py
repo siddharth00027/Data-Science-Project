@@ -1,5 +1,23 @@
 import streamlit as st
 import util
+import os
+import json
+
+def load_data():
+    try:
+        current_dir = os.path.dirname(__file__)
+        columns_path = os.path.join(current_dir, 'artifacts', 'columns.json')
+
+        with open(columns_path, 'r') as f:
+            return json.load(f)['data_columns']
+    except FileNotFoundError:
+        st.error("File not found. Please ensure the 'columns.json' file exists.")
+        return []
+    except json.JSONDecodeError:
+        st.error("Error decoding JSON. Please check the 'columns.json' file.")
+        return []
+
+__data_columns = load_data()
 
 def main():
     st.title('Home Price Prediction')
