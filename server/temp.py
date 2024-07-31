@@ -1,6 +1,5 @@
 import streamlit as st
 import util
-import os
 
 def main():
     st.title('Home Price Prediction')
@@ -10,10 +9,11 @@ def main():
 
     # Get location names
     locations = util.get_location_name()
+    
     if not locations:
         st.write("No locations available for selection.")
         return
-    
+
     # User input
     location = st.selectbox('Select Location', locations)
     total_sqft = st.number_input('Total Square Feet', min_value=0.0)
@@ -21,8 +21,11 @@ def main():
     bath = st.number_input('Bath', min_value=0)
 
     if st.button('Predict'):
-        estimated_price = util.get_estimated_price(location, total_sqft, bhk, bath)
-        st.write(f'Estimated Price: ₹{estimated_price} Lac')
+        try:
+            estimated_price = util.get_estimated_price(location, total_sqft, bhk, bath)
+            st.write(f'Estimated Price: ₹{estimated_price} Lac')
+        except Exception as e:
+            st.write(f"Error occurred: {e}")
 
 if __name__ == '__main__':
     main()
