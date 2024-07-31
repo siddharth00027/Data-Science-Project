@@ -1,4 +1,6 @@
 from flask import Flask, request, jsonify
+from flask import Flask, request, jsonify, send_from_directory
+
 import  util
 import os
 app = Flask(__name__)
@@ -7,7 +9,7 @@ def initialize():
 
 @app.route('/')
 def index():
-    return "Welcome to the Home Price Prediction API!"
+   return send_from_directory('static', 'app.html')
 
 @app.route('/get_location_names', methods=['GET'])
 def get_location_name():
