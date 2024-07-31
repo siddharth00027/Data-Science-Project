@@ -51,8 +51,12 @@ def predict_home_price():
 #     })
 #     return  response
 if __name__ == "__main__":
-    print("Starting python flask server!")
+    # print("Starting python flask server!")
+    # initialize()
+    # # print(util.get_location_name())
+    # # print(util.get_estimated_price('1st phase jp nagar', 1000, 2, 2))
+    # app.run()
+    port = int(os.environ.get('PORT', 5000))
+    print(f"Starting python flask server on port {port}!")
     initialize()
-    # print(util.get_location_name())
-    # print(util.get_estimated_price('1st phase jp nagar', 1000, 2, 2))
-    app.run()
+    app.run(host='0.0.0.0', port=port)
