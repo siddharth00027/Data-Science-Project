@@ -1,6 +1,5 @@
-from flask import Flask, request, jsonify
+from flask import Flask, request, jsonify ,render_template
 from flask import Flask, request, jsonify, send_from_directory
-
 import  util
 import os
 app = Flask(__name__)
@@ -9,7 +8,8 @@ def initialize():
 
 @app.route('/')
 def index():
-   return send_from_directory('static', 'app.html')
+#    return send_from_directory('templates', 'app.html')
+     return render_template('app.html')
 
 @app.route('/get_location_names', methods=['GET'])
 def get_location_name():
